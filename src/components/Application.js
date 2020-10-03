@@ -9,6 +9,7 @@ import { getAppointmentsForDay, getInterviewersForDay, getInterview } from "help
 
 
 
+
 export default function Application(props) {
   const [state, setState] = useState({
     day: "Monday",
@@ -46,6 +47,27 @@ export default function Application(props) {
     // axios.get('api/days').then(response => {setDays([...response.data])}, [state.days])
   }
     , []);
+
+  function bookInterview(id, interview) {
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    setState({
+      ...state,
+      appointments
+    });
+
+    axios.put(`http://localhost:8001/api/appointments/${id}`, appointment ).then(response => {
+      console.log(response)
+    }
+    )
+  };
   return (
     <main className="layout">
       <section className="sidebar">
@@ -78,6 +100,7 @@ export default function Application(props) {
             time={appointment.time}
             interview={interview}
             interviewers={dailyInterviewers}
+            bookInterview={bookInterview}
           />
           )
         })}
