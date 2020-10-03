@@ -46,27 +46,48 @@ export default function Application(props) {
 
     // axios.get('api/days').then(response => {setDays([...response.data])}, [state.days])
   }
-    , []);
+  , []);
+
+  function cancelInterview(id) {
+    const appointment = {
+      ...state.appointments[id],
+      interview: null
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+
+    
+
+    const deletePromise = axios.delete(`http://localhost:8001/api/appointments/${id}`, appointment ).then(response => {
+      setState({
+        ...state,
+        appointments
+      });
+    })
+    return deletePromise;
+  };
 
   function bookInterview(id, interview) {
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
     };
-
     const appointments = {
       ...state.appointments,
       [id]: appointment
     };
-    setState({
-      ...state,
-      appointments
-    });
 
-    axios.put(`http://localhost:8001/api/appointments/${id}`, appointment ).then(response => {
-      console.log(response)
-    }
-    )
+    
+
+    const savePromise = axios.put(`http://localhost:8001/api/appointments/${id}`, appointment ).then(response => {
+      setState({
+        ...state,
+        appointments
+      });
+    })
+    return savePromise;
   };
   return (
     <main className="layout">
@@ -101,6 +122,7 @@ export default function Application(props) {
             interview={interview}
             interviewers={dailyInterviewers}
             bookInterview={bookInterview}
+            cancelInterview={cancelInterview}
           />
           )
         })}
