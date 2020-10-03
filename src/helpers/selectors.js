@@ -4,6 +4,12 @@ export function getAppointmentsForDay(state, day) {
   return result;
 }
 
+export function getInterviewersForDay(state, day) {
+  const filteredDays = state.days.filter(item => item.name === day);
+  const result = filteredDays[0] ? filteredDays[0].interviewers.map(key => state.interviewers[key]) : [];
+  return result;
+}
+
 
 export function getInterview(state, interview) {
   let result = null;
