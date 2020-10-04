@@ -14,6 +14,13 @@ const state = {
       appointments: [4, 5],
       interviewers: [1, 2]
     }
+    ,
+    {
+      id: 5,
+      name: "Friday",
+      appointments: [6, 7, 8, 9],
+      interviewers: [1, 2]
+    }
   ],
   appointments: {
     "1": { id: 1, time: "12pm", interview: null },
@@ -28,7 +35,28 @@ const state = {
       id: 5,
       time: "4pm",
       interview: { student: "Chad Takahashi", interviewer: 2 }
+    },
+    "6": {
+      id: 6,
+      time: "4pm",
+      interview: { student: "Chad Takahashi", interviewer: 2 }
+    },
+    "7": {
+      id: 7,
+      time: "4pm",
+      interview: { student: "Chad Takahashi", interviewer: 2 }
+    },
+    "8": {
+      id: 8,
+      time: "4pm",
+      interview: { student: "Chad Takahashi", interviewer: 2 }
+    },
+    "9": {
+      id: 9,
+      time: "4pm",
+      interview: { student: "Chad Takahashi", interviewer: 2 }
     }
+
   },
   interviewers: {
     "1": {  
@@ -116,4 +144,20 @@ test("getInterview returns an object with the interviewer data", () => {
 test("getInterview returns null if no interview is booked", () => {
   const result = getInterview(state, state.appointments["2"].interview);
   expect(result).toBeNull();
+});
+
+
+test("getSpotsForDay returns the correct number of spots", () => {
+  const result = getSpotsForDay(state, "Monday");
+  expect(result).toEqual(2);
+});
+
+test("getSpotsForDay returns 0 if no spots availble", () => {
+  const result = getSpotsForDay(state, "Friday");
+  expect(result).toEqual(0);
+});
+
+test("getSpotsForDay returns 0 if no spots availble", () => {
+  const result = getSpotsForDay(state, "Wensday");
+  expect(result).toEqual(null);
 });

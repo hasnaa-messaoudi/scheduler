@@ -20,8 +20,8 @@ export function getInterview(state, interview) {
       result.student = interview.student;
       result.interviewer = {
         id: interviewItem.interviewer,
-        name: state.interviewers[interviewItem.interviewer].name,
-        avatar: state.interviewers[interviewItem.interviewer].avatar
+        name: state.interviewers[interviewItem.interviewer] ? state.interviewers[interviewItem.interviewer].name : '',
+        avatar: state.interviewers[interviewItem.interviewer] ? state.interviewers[interviewItem.interviewer].avatar : ''
       };
     }
   }
