@@ -15,9 +15,9 @@ export function useApplicationData() {
 
   useEffect(() => {
     Promise.all([
-      axios.get('api/days'),
-      axios.get('api/appointments'),
-      axios.get('api/interviewers'),
+      axios.get('http://localhost:8001/api/days'),
+      axios.get('http://localhost:8001/api/appointments'),
+      axios.get('http://localhost:8001/api/interviewers'),
     ]).then((all) => {
 
       setState(prev => ({
@@ -53,9 +53,7 @@ export function useApplicationData() {
         ...state,
         appointments,
         days
-      });
-      console.log(state.days);
-      
+      });      
     })
 
 
@@ -63,6 +61,11 @@ export function useApplicationData() {
   };
 
   function bookInterview(id, interview) {
+    let editFlag = false;
+    if (state.appointments[id].interview) {
+      editFlag = true;
+    }
+
     
     const appointment = {
       ...state.appointments[id],
@@ -75,12 +78,14 @@ export function useApplicationData() {
 
 
     const days = [...state.days];
-    
-    for (const day of days) {
-       if (day['name'] === state.day){
-         day['spots']--;
-      }
+    if (!editFlag) {
+      for (const day of days) {
+        if (day['name'] === state.day){
+          day['spots']--;
+       }
+     }
     }
+    
     
 
     const savePromise = axios.put(`http://localhost:8001/api/appointments/${id}`, appointment ).then(response => {
@@ -89,7 +94,7 @@ export function useApplicationData() {
         appointments,
         days
       });
-      console.log(state.days);
+ 
     })
     return savePromise;
   };

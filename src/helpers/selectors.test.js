@@ -145,19 +145,3 @@ test("getInterview returns null if no interview is booked", () => {
   const result = getInterview(state, state.appointments["2"].interview);
   expect(result).toBeNull();
 });
-
-
-test("getSpotsForDay returns the correct number of spots", () => {
-  const result = getSpotsForDay(state, "Monday");
-  expect(result).toEqual(2);
-});
-
-test("getSpotsForDay returns 0 if no spots availble", () => {
-  const result = getSpotsForDay(state, "Friday");
-  expect(result).toEqual(0);
-});
-
-test("getSpotsForDay returns 0 if no spots availble", () => {
-  const result = getSpotsForDay(state, "Wensday");
-  expect(result).toEqual(null);
-});
