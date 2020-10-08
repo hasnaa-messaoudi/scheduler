@@ -174,7 +174,7 @@ describe("Application", () => {
     expect(getByText(appointment, "Deleting")).toBeInTheDocument();
 
     //console.log(prettyDOM(appointment));
-    // 7. Wait until the element with the "Add" button is displayed.
+    // 7. Wait until the element with the error message is displayed.
     await waitForElement(() => getByText(appointment, "Could not delete appointment."));    
   });
 
