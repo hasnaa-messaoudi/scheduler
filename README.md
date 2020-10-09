@@ -27,3 +27,9 @@ npm test
 ```sh
 npm run storybook
 ```
+
+## Dependencies
+
+- axios 0.18.1
+- react 16.9.0 or above
+- react-hooks-testing-library
