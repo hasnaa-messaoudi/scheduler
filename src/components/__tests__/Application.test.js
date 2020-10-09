@@ -27,7 +27,6 @@ describe("Application", () => {
     const appointments = getAllByTestId(container, "appointment");
     const appointment = appointments[0];
 
-    //console.log(prettyDOM(appointment));
   
     fireEvent.click(getByAltText(appointment, "Add"));
   
@@ -47,7 +46,6 @@ describe("Application", () => {
       queryByText(day, "Monday")
     );
     
-    //console.log(prettyDOM(day));
 
     expect(getByText(day, "no spots remaining")).toBeInTheDocument();
     
@@ -130,7 +128,6 @@ describe("Application", () => {
     const appointments = getAllByTestId(container, "appointment");
     const appointment = appointments[0];
 
-    //console.log(prettyDOM(appointment));
   
     fireEvent.click(getByAltText(appointment, "Add"));
   
@@ -173,7 +170,6 @@ describe("Application", () => {
     // 6. Check that the element with the text "Deleting" is displayed.
     expect(getByText(appointment, "Deleting")).toBeInTheDocument();
 
-    //console.log(prettyDOM(appointment));
     // 7. Wait until the element with the error message is displayed.
     await waitForElement(() => getByText(appointment, "Could not delete appointment."));    
   });
