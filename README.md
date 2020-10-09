@@ -2,8 +2,8 @@
 
 ## Final Product
 
-!["Appointment list"]()
-!["Edit Appointment"]()
+!["Appointment list"](https://raw.githubusercontent.com/hasnaa-messaoudi/scheduler/master/docs/AppointmentList.PNG)
+!["Edit Appointment"](https://raw.githubusercontent.com/hasnaa-messaoudi/scheduler/master/docs/AppointmentEdit.PNG)
 
 
 ## Setup
